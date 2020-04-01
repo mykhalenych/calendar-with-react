@@ -1,32 +1,46 @@
 import React from 'react'
 import './header.scss'
 import Head from './Head'
-import Week from './Date'
+import Week from './Week'
 class Header extends React.Component{
-  handlePopUp = () => {
-    console.log("йоу");
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      day: 0,
+    };
+  }
 
   handleCuurentDay = () => {
-    console.log("йоу");
+    this.setState({
+      day: 0,
+    })
   };
   handlePrevWeek = () => {
-    console.log("йоу");
+    this.setState({
+      day: this.state.day -7
+    })
   };
   handleNextWeek = () => {
-    console.log("йоу");
+    this.setState({
+      day: this.state.day +7
+    })
   };
+
+  
+  
   render(){
-    
+
     return(
       <header className="header">
         <Head
-        showPopUp={this.handlePopUp}
+        showPopup={this.props.showPopup}
         getCurrentDay={this.handleCuurentDay}
         getPrevWeek={this.handlePrevWeek}
         getNextWeek={this.handleNextWeek}
       />
-        <Week />
+        <Week 
+        day={this.state.day}
+        />
       </header>
     )
   }

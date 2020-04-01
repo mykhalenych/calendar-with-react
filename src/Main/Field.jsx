@@ -7,7 +7,7 @@ class Field extends React.Component{
     return(
 
     <>{arr.map(day =>{
-     return <div className="multicolumns__field"></div>
+     return <div key={Math.random()} className="multicolumns__field"></div>
     })}</>
     )
   }

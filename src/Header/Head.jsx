@@ -4,10 +4,10 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
-const Head = ({ showPopUp, getNextWeek, getPrevWeek, getCurrentDay }) => {
+const Head = ({ showPopup, getNextWeek, getPrevWeek, getCurrentDay }) => {
   return (
     <div className="head">
-      <button className="head-create add-button" onClick={() => showPopUp()}>
+      <button className="head-create add-button" onClick={() => showPopup()}>
         <FontAwesomeIcon icon={faPlus} />
         Create
       </button>

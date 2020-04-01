@@ -9,7 +9,7 @@ class Column extends React.Component {
         {arr.map((item, hour) => {
           hour = hour + 1;
           return (item = (
-            <div className="columnHour">
+            <div key={Math.random()} className="columnHour">
               {hour < 10 ? `0${hour}:00` : `${hour}:00`}
             </div>
           ));
