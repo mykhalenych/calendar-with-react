@@ -1,16 +1,25 @@
-import React from 'react'
+import React from "react";
+import moment from 'moment'
+const Field = ({day}) => {
+  
+  let arr = Array(7).fill("0");
+  let currentDay = day
 
-class Field extends React.Component{
- 
-  render(){
-    let arr = Array(7).fill('0')
-    return(
+  const weekDays = arr.map(() => {
+    const startOfWeek = moment()
+      .startOf("isoWeek")
+      .add(currentDay, "day")
 
-    <>{arr.map(day =>{
-     return <div key={Math.random()} className="multicolumns__field"></div>
-    })}</>
+    currentDay++
+    return (
+      <div key={Math.random()} className="multicolumns__field">{startOfWeek.format("DD")}</div>
     )
-  }
+  })
+  return (
+  
+     <div key={Math.random()} className="multicolumns__field">{weekDays}</div>
+   
+  )
 }
 
-export default Field
+export default Field;

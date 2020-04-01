@@ -7,14 +7,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       show: false,
-     
+      day: 0,
     };
   }
 
   showPopup = () => {
-    console.log(true)
     this.setState({
-      show: true
+      show: true,
     });
   };
   closePopup = () =>{
@@ -22,14 +21,33 @@ class App extends React.Component {
       show: false
     })
   }
+  handleCuurentDay = () => {
+    this.setState({
+      day: 0,
+    })
+  };
+  handlePrevWeek = () => {
+    this.setState({
+      day: this.state.day -7
+    })
+  };
+  handleNextWeek = () => {
+    this.setState({
+      day: this.state.day +7
+    })
+  };
 
   render() {
     return (
       <div className="App">
         <Header 
-        showPopup={this.showPopup} 
+        day={this.state.day}
+        showPopup={this.showPopup}
+        handleNextWeek={this.handleNextWeek} 
+        handlePrevWeek={this.handlePrevWeek}
+        handleCuurentDay={this.handleCuurentDay}
         />
-        <Main />
+        <Main day={this.state.day}/>
         {this.state.show && <Popup closePopup={this.closePopup}/>}
       </div>
     );

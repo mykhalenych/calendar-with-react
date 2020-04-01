@@ -1,49 +1,26 @@
-import React from 'react'
-import './header.scss'
-import Head from './Head'
-import Week from './Week'
-class Header extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      day: 0,
-    };
-  }
+import React from "react";
+import "./header.scss";
+import Head from "./Head";
+import Week from "./Week";
 
-  handleCuurentDay = () => {
-    this.setState({
-      day: 0,
-    })
-  };
-  handlePrevWeek = () => {
-    this.setState({
-      day: this.state.day -7
-    })
-  };
-  handleNextWeek = () => {
-    this.setState({
-      day: this.state.day +7
-    })
-  };
-
-  
-  
-  render(){
-
-    return(
-      <header className="header">
-        <Head
-        showPopup={this.props.showPopup}
-        getCurrentDay={this.handleCuurentDay}
-        getPrevWeek={this.handlePrevWeek}
-        getNextWeek={this.handleNextWeek}
+const Header = ({
+  day,
+  showPopup,
+  handleNextWeek,
+  handlePrevWeek,
+  handleCuurentDay
+}) => {
+  return (
+    <header className="header">
+      <Head
+        showPopup={showPopup}
+        getCurrentDay={handleCuurentDay}
+        getPrevWeek={handlePrevWeek}
+        getNextWeek={handleNextWeek}
       />
-        <Week 
-        day={this.state.day}
-        />
-      </header>
-    )
-  }
-}
+      <Week day={day} />
+    </header>
+  );
+};
 
-export default Header 
+export default Header;
