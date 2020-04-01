@@ -10,7 +10,6 @@ class App extends React.Component {
       day: 0,
     };
   }
-
   showPopup = () => {
     this.setState({
       show: true,
