@@ -8,7 +8,7 @@ const Header = ({
   showPopup,
   handleNextWeek,
   handlePrevWeek,
-  handleCuurentDay
+  handleCuurentDay,
 }) => {
   return (
     <header className="header">

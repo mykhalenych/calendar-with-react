@@ -7,7 +7,7 @@ const Main = ({ day }) => {
   return (
     <section className="main">
       <Column />
-      <Multicolumns day={day} />
+      <Multicolumns day={day}/>
     </section>
   );
 };

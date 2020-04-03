@@ -5,8 +5,10 @@
   margin: 0;
   padding: 0;
   padding-top: 163px;
+
   .multicolumns {
       width: 100%;
+      display: flex;
       &__field {
           // position: relative;
           display: flex;
@@ -16,7 +18,9 @@
           border-left: 1px solid black;
       }
       &__line {
-          display: flex;
+            position: relative;
+            width: 100%;
+        
       }
   }
   .columnHour {
@@ -57,3 +61,5 @@
       background-color: red
   }
 }
+
+
