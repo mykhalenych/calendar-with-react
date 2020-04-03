@@ -1,5 +1,5 @@
 import React from "react";
-
+import { createEvent } from "../Gateways/Gateways";
 class Form extends React.Component {
   state = {
     title: "",
@@ -52,7 +52,6 @@ class Form extends React.Component {
             type="datetime-local"
             name="dataStart"
             id="dataStart"
-            value="2020-03-03T18:00"
             onChange={this.handleChange}
           />
 
@@ -61,7 +60,6 @@ class Form extends React.Component {
             type="datetime-local"
             name="dataEnd"
             id="dataEnd"
-            value="2020-03-03T19:00"
             onChange={this.handleChange}
           />
         </div>
@@ -81,7 +79,6 @@ class Form extends React.Component {
           className="popup-form__color"
           name="color"
           id="color"
-          value="#2979ff"
           onChange={this.handleChange}
         />
         <div>
@@ -97,6 +94,7 @@ class Form extends React.Component {
             type="submit"
             name="submit"
             id="submit"
+            onClick={() => createEvent(this.state).then(this.props.closePopup)}
           >
             Відправити
           </button>

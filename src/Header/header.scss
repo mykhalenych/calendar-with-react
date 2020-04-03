@@ -101,3 +101,21 @@
       }
   }
 }
+
+
+.redline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    &__ball {
+        position: relative;
+        bottom: 6px;
+        right: 6px;
+        height: 12px;
+        width: 12px;
+        border-radius: 100%;
+        background-color: red
+    }
+}

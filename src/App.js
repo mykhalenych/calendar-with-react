@@ -2,53 +2,63 @@ import React from "react";
 import Header from "./Header/Header";
 import Main from "./Main/Main";
 import Popup from "./Popup/Popup";
+import { fetchEventsList } from "./Gateways/Gateways";
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       show: false,
-      day: 0,
+      day: 0
     };
+  }
+  componentDidMount() {
+    fetchEventsList()
+      .then(result => {
+        this.setState({
+          array: result
+        });
+      })
+      .catch(() => alert(`don't work!`));
   }
 
   showPopup = () => {
     this.setState({
-      show: true,
+      show: true
     });
   };
-  closePopup = () =>{
+  closePopup = () => {
     this.setState({
       show: false
-    })
-  }
+    });
+  };
   handleCuurentDay = () => {
     this.setState({
-      day: 0,
-    })
+      day: 0
+    });
   };
   handlePrevWeek = () => {
     this.setState({
-      day: this.state.day -7
-    })
+      day: this.state.day - 7
+    });
   };
   handleNextWeek = () => {
     this.setState({
-      day: this.state.day +7
-    })
+      day: this.state.day + 7
+    });
   };
 
   render() {
     return (
       <div className="App">
-        <Header 
-        day={this.state.day}
-        showPopup={this.showPopup}
-        handleNextWeek={this.handleNextWeek} 
-        handlePrevWeek={this.handlePrevWeek}
-        handleCuurentDay={this.handleCuurentDay}
+        <Header
+          day={this.state.day}
+          showPopup={this.showPopup}
+          handleNextWeek={this.handleNextWeek}
+          handlePrevWeek={this.handlePrevWeek}
+          handleCuurentDay={this.handleCuurentDay}
         />
-        <Main day={this.state.day}/>
-        {this.state.show && <Popup closePopup={this.closePopup}/>}
+        <Main day={this.state.day} />
+        {this.state.show && <Popup closePopup={this.closePopup} />}
       </div>
     );
   }
