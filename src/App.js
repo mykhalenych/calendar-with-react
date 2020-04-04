@@ -2,48 +2,68 @@ import React from "react";
 import Header from "./Header/Header";
 import Main from "./Main/Main";
 import Popup from "./Popup/Popup";
-import { fetchEventsList } from "./Gateways/Gateways";
+import { fetchEventsList, deleteEvent } from "./Gateways/Gateways";
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       show: false,
-      day: 0
+      day: 0,
+      events: [],
+      popupData: false,
     };
   }
+ 
+  handleDeleteTask = (id) => {
+    deleteEvent(id).then(() => fetchEventsList());
+  };
   componentDidMount() {
     fetchEventsList()
-      .then(result => {
+      .then((events) => {
         this.setState({
-          array: result
+          events: events,
         });
       })
       .catch(() => alert(`don't work!`));
   }
 
-  showPopup = () => {
+  showData = (start, id) => {
     this.setState({
-      show: true
+      start: start,
+      id: id,
     });
   };
+  showPopup = () => {
+    this.setState({
+      show: true,
+    });
+  };
+
+  // showPopup = (date, id) => {
+  //   this.setState({
+  //     show: true,
+  //     dataStart: date,
+  //     id: id,
+  //   });
+  // };
   closePopup = () => {
     this.setState({
-      show: false
+      show: false,
     });
   };
   handleCuurentDay = () => {
     this.setState({
-      day: 0
+      day: 0,
     });
   };
   handlePrevWeek = () => {
     this.setState({
-      day: this.state.day - 7
+      day: this.state.day - 7,
     });
   };
   handleNextWeek = () => {
     this.setState({
-      day: this.state.day + 7
+      day: this.state.day + 7,
     });
   };
 
@@ -57,8 +77,21 @@ class App extends React.Component {
           handlePrevWeek={this.handlePrevWeek}
           handleCuurentDay={this.handleCuurentDay}
         />
-        <Main day={this.state.day} />
-        {this.state.show && <Popup closePopup={this.closePopup} />}
+        <Main
+          day={this.state.day}
+          events={this.state.events}
+          showPopup={this.showPopup}
+          handleDeleteTask={this.handleDeleteTask}
+        />
+        {this.state.show && (
+          <Popup
+            closePopup={this.closePopup}
+            deleteEvents={this.handleDeleteTask}
+            dataStart={this.state.dataStart}
+            id={this.state.id}
+            start={this.props.start}
+          />
+        )}
       </div>
     );
   }

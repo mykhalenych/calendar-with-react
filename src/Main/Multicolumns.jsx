@@ -3,10 +3,9 @@ import Field from "./Field";
 import moment from "moment";
 import Redline from "../Main/Redline";
 
-const Multicolumns = ({ day }) => {
+const Multicolumns = ({ day, events, showPopup, handleDeleteTask }) => {
   let arr = Array(7).fill("0");
   let idForHour = day;
-
 
   return (
     <div className="multicolumns">
@@ -18,12 +17,16 @@ const Multicolumns = ({ day }) => {
         idForHour++;
         const redline =
           idHour === moment().format("YYYY-MM-DD") ? <Redline /> : null;
-        console.log(idHour);
-
         return (
           <div key={Math.random()} className="multicolumns__line">
-            <Field day={day} />
+            <Field
+              events={events}
+              idHour={idHour}
+              showPopup={showPopup}
+              handleDeleteTask={handleDeleteTask}
+            />
             {redline}
+            {idHour}
           </div>
         );
       })}

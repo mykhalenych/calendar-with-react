@@ -63,3 +63,25 @@
 }
 
 
+.event {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    // height: 60px;
+    width: 90%;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #2979ff;
+    cursor: pointer;
+    border-color: black;
+    overflow: auto;
+    text-overflow: ellipsis;
+    color: #fff;
+    transition: 1s;
+    animation: show 0.5s 1;
+    animation-fill-mode: forwards;
+    z-index: 10;
+   
+}
+
