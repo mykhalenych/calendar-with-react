@@ -66,7 +66,17 @@ class App extends React.Component {
       day: this.state.day + 7,
     });
   };
-
+  componentDidUpdate(nextState, prevState){
+    if (this.state.events !== prevState.events) {
+      fetchEventsList()
+          .then(result => {
+              this.setState({
+                  array: result
+              })
+          })
+          .catch(() => alert('Internal Server Error. Can\'t display events'))
+  }
+  }
   render() {
     return (
       <div className="App">

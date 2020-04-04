@@ -1,39 +1,35 @@
 import React from "react";
 import { createEvent } from "../Gateways/Gateways";
 class Form extends React.Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       title: "",
       dataStart: "",
       dataEnd: "",
       description: "",
-      color: ""
+      color: "",
     };
   }
-  
 
-
-
-  handleChange = event => {
+  handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
-    console.log('є')
+    console.log("є");
   };
 
   componentDidMount() {
     this.setState({
-        start:this.props.start,  
+      start: this.props.start,
     });
-  };
+  }
   render() {
-    
     return (
       <form className="popup-form" onSubmit={this.handleSubmit}>
         <input
@@ -91,10 +87,7 @@ class Form extends React.Component {
           <button
             className="delete-btn"
             id="delete"
-            onClick={() =>
-              this.props.deleteEvents(this.props.id)
-             
-            }
+            onClick={() => this.props.deleteEvents(this.props.id)}
           >
             <i className="material-icons">delete</i>
           </button>

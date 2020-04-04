@@ -13,6 +13,7 @@ const Main = ({ day, events, showPopup, handleDeleteTask }) => {
         showPopup={showPopup}
         handleDeleteTask={handleDeleteTask}
       />
+      
     </section>
   );
 };

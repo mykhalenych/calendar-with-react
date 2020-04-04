@@ -11,6 +11,7 @@ const arr = (from, to) => {
 }
 
   let idForHour = idHour; 
+  console.log(idForHour)
   return arr(0, 23).map(item => {
     const hour = `0${item}`.slice(-2)
     const id = `${idForHour}T${hour}`
@@ -18,11 +19,16 @@ const arr = (from, to) => {
 
     let eventFound = events.find( 
       event => {
+        // console.log(event.dataStart)
+        console.log(id)
+
        return event.dataStart.slice(0, -3) === id}
     );
 
     let event;
+    
     if(eventFound){
+      
       let startHour =  moment(eventFound.dataStart, 'YYYY-MM-DD hh:mm').format("HH")
       let endHour =  moment(eventFound.dataEnd, 'YYYY-MM-DD hh:mm').format("HH")
       let startMinute = moment(eventFound.dataStart, 'YYYY-MM-DD hh:mm').format("mm")
@@ -48,7 +54,7 @@ const arr = (from, to) => {
     }
 
     return (
-      <div key={Math.random()} className="multicolumns__field"
+      <div key={Math.random()}className="multicolumns__field"
       onClick={() => showPopup()}
       >
         {dateMy}
@@ -58,6 +64,26 @@ const arr = (from, to) => {
   });
 
 };
+export default Field
 
-export default Field;
+// import React from "react";
+// import moment from "moment";
+// const Field = ({ day }) => {
+//   let arr = Array(24).fill("0");
+//   let currentDay = day;
+
+//   return arr.map((arr, index) => {
+//     const startOfWeek = moment()
+//       .startOf("isoWeek")
+//       .add(currentDay, "day");
+
+//     currentDay++;
+//     return (
+//       <div key={Math.random()} className="multicolumns__field">
+//         {startOfWeek.format("DD")}
+//       </div>
+//     );
+//   });
+// };
+// export default Field;
 
