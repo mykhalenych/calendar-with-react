@@ -21,7 +21,6 @@ class Form extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log("є");
   };
 
   componentDidMount() {
@@ -84,13 +83,6 @@ class Form extends React.Component {
           <label htmlFor="color">Виберіть колір для події</label>
         </div>
         <div className="btn-block">
-          <button
-            className="delete-btn"
-            id="delete"
-            onClick={() => this.props.deleteEvents(this.props.id)}
-          >
-            <i className="material-icons">delete</i>
-          </button>
           <button
             className="submit btn waves-effect waves-light"
             type="submit"

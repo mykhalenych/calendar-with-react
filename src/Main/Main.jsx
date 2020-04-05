@@ -3,7 +3,7 @@ import Column from "./Column";
 import Multicolumns from "./Multicolumns";
 import "./main.scss";
 
-const Main = ({ day, events, showPopup, handleDeleteTask }) => {
+const Main = ({ day, events, showPopup, handleDeleteTask, closePopup, showEventData }) => {
   return (
     <section className="main">
       <Column />
@@ -12,6 +12,9 @@ const Main = ({ day, events, showPopup, handleDeleteTask }) => {
         events={events}
         showPopup={showPopup}
         handleDeleteTask={handleDeleteTask}
+        closePopup={closePopup}
+        showEventData={showEventData}
+
       />
       
     </section>

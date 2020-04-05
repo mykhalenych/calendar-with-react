@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header/Header";
 import Main from "./Main/Main";
 import Popup from "./Popup/Popup";
+import PopupDelete from "./Main/PopupDelete";
 import { fetchEventsList, deleteEvent } from "./Gateways/Gateways";
 class App extends React.Component {
   constructor(props) {
@@ -10,10 +11,10 @@ class App extends React.Component {
       show: false,
       day: 0,
       events: [],
-      popupData: false,
+      willDelete: false,
     };
   }
- 
+
   handleDeleteTask = (id) => {
     deleteEvent(id).then(() => fetchEventsList());
   };
@@ -27,28 +28,25 @@ class App extends React.Component {
       .catch(() => alert(`don't work!`));
   }
 
-  showData = (start, id) => {
-    this.setState({
-      start: start,
-      id: id,
-    });
-  };
   showPopup = () => {
     this.setState({
       show: true,
     });
   };
 
-  // showPopup = (date, id) => {
-  //   this.setState({
-  //     show: true,
-  //     dataStart: date,
-  //     id: id,
-  //   });
-  // };
   closePopup = () => {
     this.setState({
       show: false,
+    });
+  };
+
+  showEventData = (event, { id }) => {
+    this.handleDeleteTask(id);
+
+    event.stopPropagation()
+    this.setState({
+      willDelete: true,
+      id,
     });
   };
   handleCuurentDay = () => {
@@ -66,17 +64,7 @@ class App extends React.Component {
       day: this.state.day + 7,
     });
   };
-  componentDidUpdate(nextState, prevState){
-    if (this.state.events !== prevState.events) {
-      fetchEventsList()
-          .then(result => {
-              this.setState({
-                  array: result
-              })
-          })
-          .catch(() => alert('Internal Server Error. Can\'t display events'))
-  }
-  }
+
   render() {
     return (
       <div className="App">
@@ -87,11 +75,14 @@ class App extends React.Component {
           handlePrevWeek={this.handlePrevWeek}
           handleCuurentDay={this.handleCuurentDay}
         />
+
         <Main
           day={this.state.day}
           events={this.state.events}
           showPopup={this.showPopup}
           handleDeleteTask={this.handleDeleteTask}
+          closePopup={this.closePopup}
+          showEventData={this.showEventData}
         />
         {this.state.show && (
           <Popup
@@ -100,6 +91,12 @@ class App extends React.Component {
             dataStart={this.state.dataStart}
             id={this.state.id}
             start={this.props.start}
+          />
+        )}
+        {this.state.willDelete && (
+          <PopupDelete
+            deleteEvent={this.handleDeleteTask}
+            closePopup={this.closePopup}
           />
         )}
       </div>

@@ -47,7 +47,7 @@ import Field from "./Field";
 import moment from "moment";
 import Redline from "../Main/Redline";
 
-const Multicolumns = ({ day, events, showPopup, handleDeleteTask }) => {
+const Multicolumns = ({ day, events, showPopup, handleDeleteTask, closePopup, showEventData }) => {
   let arr = Array(7).fill("0");
   let idForHour = day;
 
@@ -69,6 +69,8 @@ const Multicolumns = ({ day, events, showPopup, handleDeleteTask }) => {
               events={events}
               showPopup={showPopup}
               handleDeleteTask={handleDeleteTask}
+              closePopup={closePopup}
+              showEventData={showEventData}
             />
             {redline}
           </div>

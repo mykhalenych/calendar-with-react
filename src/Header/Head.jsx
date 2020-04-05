@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-
+import moment from 'moment'
 const Head = ({ showPopup, getNextWeek, getPrevWeek, getCurrentDay }) => {
+  const today = moment().format("YYYY-MM-DD-hh-mm")
   return (
     <div className="head">
-      <button className="head-create add-button" onClick={() => showPopup()}>
+      <button className="head-create add-button" onClick={() => showPopup(today)}>
         <FontAwesomeIcon icon={faPlus} />
         Create
       </button>
