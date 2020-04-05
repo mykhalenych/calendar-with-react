@@ -2,7 +2,8 @@ import React from "react";
 import Header from "./Header/Header";
 import Main from "./Main/Main";
 import Popup from "./Popup/Popup";
-import PopupDelete from "./Main/PopupDelete";
+import PopupDelete from "./Popup/PopupDelete";
+import moment from "moment";
 import { fetchEventsList, deleteEvent } from "./Gateways/Gateways";
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +17,15 @@ class App extends React.Component {
   }
 
   handleDeleteTask = (id) => {
-    deleteEvent(id).then(() => fetchEventsList());
+    deleteEvent(id).then(() =>
+      fetchEventsList()
+        .then((events) => {
+          this.setState({
+            events: events,
+          });
+        })
+        .catch(() => alert(`don't work!`))
+    );
   };
   componentDidMount() {
     fetchEventsList()
@@ -28,6 +37,20 @@ class App extends React.Component {
       .catch(() => alert(`don't work!`));
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.state.show !== prevState.show ||
+      this.state.willDelete !== prevState.willDelete
+    ) {
+      fetchEventsList()
+        .then((result) => {
+          this.setState({
+            events: result,
+          });
+        })
+        .catch(() => alert(`don't work`));
+    }
+  }
   showPopup = () => {
     this.setState({
       show: true,
@@ -43,7 +66,7 @@ class App extends React.Component {
   showEventData = (event, { id }) => {
     this.handleDeleteTask(id);
 
-    event.stopPropagation()
+    event.stopPropagation();
     this.setState({
       willDelete: true,
       id,
@@ -64,6 +87,11 @@ class App extends React.Component {
       day: this.state.day + 7,
     });
   };
+  currentMounth = () => {
+    let startOfWeek = moment().startOf("isoWeek").toDate();
+    let mounth = startOfWeek.setDate(startOfWeek.getDate() + this.state.day);
+    return new Date(mounth).toString().split(" ")[1];
+  };
 
   render() {
     return (
@@ -74,6 +102,7 @@ class App extends React.Component {
           handleNextWeek={this.handleNextWeek}
           handlePrevWeek={this.handlePrevWeek}
           handleCuurentDay={this.handleCuurentDay}
+          currentMounth={this.currentMounth()}
         />
 
         <Main
@@ -84,15 +113,7 @@ class App extends React.Component {
           closePopup={this.closePopup}
           showEventData={this.showEventData}
         />
-        {this.state.show && (
-          <Popup
-            closePopup={this.closePopup}
-            deleteEvents={this.handleDeleteTask}
-            dataStart={this.state.dataStart}
-            id={this.state.id}
-            start={this.props.start}
-          />
-        )}
+        {this.state.show && <Popup closePopup={this.closePopup} />}
         {this.state.willDelete && (
           <PopupDelete
             deleteEvent={this.handleDeleteTask}

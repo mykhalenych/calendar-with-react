@@ -8,7 +8,7 @@ class Form extends React.Component {
       dataStart: "",
       dataEnd: "",
       description: "",
-      color: "",
+      color: " ",
     };
   }
 
@@ -22,12 +22,6 @@ class Form extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
   };
-
-  componentDidMount() {
-    this.setState({
-      start: this.props.start,
-    });
-  }
   render() {
     return (
       <form className="popup-form" onSubmit={this.handleSubmit}>
@@ -77,6 +71,7 @@ class Form extends React.Component {
           className="popup-form__color"
           name="color"
           id="color"
+         
           onChange={this.handleChange}
         />
         <div>

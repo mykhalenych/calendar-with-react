@@ -6,10 +6,7 @@ const Week = ({ day }) => {
 
   let arr = Array(7).fill("0");
   const weekDays = arr.map(() => {
-    const startOfWeek = moment()
-      .startOf("isoWeek")
-      .add(currentDay, "day");
-
+    const startOfWeek = moment().startOf("isoWeek").add(currentDay, "day");
     currentDay++;
     return (
       <div key={Math.random()} className="date">

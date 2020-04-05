@@ -9,6 +9,7 @@ const Header = ({
   handleNextWeek,
   handlePrevWeek,
   handleCuurentDay,
+  currentMounth,
 }) => {
   return (
     <header className="header">
@@ -17,6 +18,7 @@ const Header = ({
         getCurrentDay={handleCuurentDay}
         getPrevWeek={handlePrevWeek}
         getNextWeek={handleNextWeek}
+        currentMounth={currentMounth}
       />
       <Week day={day} />
     </header>
