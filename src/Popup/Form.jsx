@@ -1,34 +1,31 @@
 import React from "react";
 import { createEvent } from "../Gateways/Gateways";
 class Form extends React.Component {
-  state = {
-    title: "",
-    dataStart: "",
-    dataEnd: "",
-    description: "",
-    color: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      dataStart: "",
+      dataEnd: "",
+      description: "",
+      color: "",
+    };
+  }
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
-    console.log(this.state);
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
   };
 
   componentDidMount() {
     this.setState({
-      title: this.props.title,
-      startDate: this.props.startDate,
-      endDate: this.props.endDate,
-      description: this.props.description,
-      color: this.props.color
+      start: this.props.start,
     });
   }
   render() {
@@ -52,6 +49,7 @@ class Form extends React.Component {
             type="datetime-local"
             name="dataStart"
             id="dataStart"
+            defaultValue={this.props.dataStart}
             onChange={this.handleChange}
           />
 
@@ -85,10 +83,6 @@ class Form extends React.Component {
           <label htmlFor="color">Виберіть колір для події</label>
         </div>
         <div className="btn-block">
-          <button className="delete-btn" id="delete">
-            {" "}
-            <i className="material-icons">delete</i>
-          </button>
           <button
             className="submit btn waves-effect waves-light"
             type="submit"

@@ -5,10 +5,13 @@ import Form from "./Form";
 class Popup extends React.Component {
   render() {
     return (
-      <div className="popup"id="popup">
+      <div className="popup" id="popup">
+        <Form
+          closePopup={this.props.closePopup}
+          deleteEvents={this.props.deleteEvents}
+          start={this.props.start}
 
-       
-        <Form closePopup={this.props.closePopup}/>
+        />
       </div>
     );
   }
