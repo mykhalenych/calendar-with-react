@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> b42b955bbcc096ac494e460ccffd78fc137225a3
 import React from "react";
 import moment from "moment";
 

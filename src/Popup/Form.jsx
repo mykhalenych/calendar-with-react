@@ -8,11 +8,7 @@ class Form extends React.Component {
       dataStart: "",
       dataEnd: "",
       description: "",
-<<<<<<< HEAD
       color: " ",
-=======
-      color: "",
->>>>>>> b42b955bbcc096ac494e460ccffd78fc137225a3
     };
   }
 
@@ -26,15 +22,6 @@ class Form extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
   };
-<<<<<<< HEAD
-=======
-
-  componentDidMount() {
-    this.setState({
-      start: this.props.start,
-    });
-  }
->>>>>>> b42b955bbcc096ac494e460ccffd78fc137225a3
   render() {
     return (
       <form className="popup-form" onSubmit={this.handleSubmit}>
@@ -84,10 +71,6 @@ class Form extends React.Component {
           className="popup-form__color"
           name="color"
           id="color"
-<<<<<<< HEAD
-         
-=======
->>>>>>> b42b955bbcc096ac494e460ccffd78fc137225a3
           onChange={this.handleChange}
         />
         <div>
