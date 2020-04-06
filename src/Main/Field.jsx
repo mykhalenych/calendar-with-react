@@ -1,6 +1,5 @@
 import React from "react";
 import moment from "moment";
-import PopupDelete from "../Popup/PopupDelete";
 
 class Field extends React.Component {
   constructor(props) {
@@ -78,12 +77,7 @@ class Field extends React.Component {
           className="multicolumns__field"
           onClick={() => this.props.showPopup()}
         >
-          {this.state.willDelete && (
-            <PopupDelete
-              isDelete={this.props.isDelete}
-              closePopup={this.props.closePopup}
-            />
-          )}
+         
 
           {event}
         </div>

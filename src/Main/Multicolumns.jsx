@@ -2,6 +2,7 @@ import React from "react";
 import Field from "./Field";
 import moment from "moment";
 import Redline from "../Main/Redline";
+import PropTypes from 'prop-types';
 
 const Multicolumns = ({ day, events, showPopup, handleDeleteTask, closePopup, showEventData }) => {
   let arr = Array(7).fill("0");
@@ -17,7 +18,6 @@ const Multicolumns = ({ day, events, showPopup, handleDeleteTask, closePopup, sh
         idForHour++;
         const redline =
           idHour === moment().format("YYYY-MM-DD") ? <Redline /> : null;
-
         return (
           <div key={Math.random()} className="multicolumns__line">
             <Field
@@ -35,5 +35,7 @@ const Multicolumns = ({ day, events, showPopup, handleDeleteTask, closePopup, sh
     </div>
   );
 };
-
+Multicolumns.propTypes = {
+  idHour: PropTypes.number
+};
 export default Multicolumns;

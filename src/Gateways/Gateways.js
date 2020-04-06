@@ -43,9 +43,5 @@ export const updateEvent = (eventId, updatedEvent) => {
 export const deleteEvent = eventId => {
   return fetch(`${baseUrl}/${eventId}`, {
     method: "DELETE"
-  }).then(res => {
-    if (!res.ok) {
-      throw new Error("Failed to delete event");
-    }
-  });
+  })
 };

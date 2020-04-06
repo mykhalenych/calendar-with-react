@@ -1,6 +1,7 @@
 import React from "react";
 import "./popup.scss";
 import Form from "./Form";
+import PropTypes from "prop-types";
 
 class Popup extends React.Component {
   render() {
@@ -9,12 +10,14 @@ class Popup extends React.Component {
         <Form
           closePopup={this.props.closePopup}
           deleteEvents={this.props.deleteEvents}
-          start={this.props.start}
-
         />
       </div>
     );
   }
 }
 
+Popup.propTypes = {
+  closePopup: PropTypes.func,
+  deleteEvents: PropTypes.func,
+};
 export default Popup;
