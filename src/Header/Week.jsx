@@ -6,12 +6,19 @@ const Week = ({ day }) => {
 
   let arr = Array(7).fill("0");
   const weekDays = arr.map(() => {
+    let activeDay;
     const startOfWeek = moment().startOf("isoWeek").add(currentDay, "day");
+    if (moment().format("DD.MM.YY") === startOfWeek.format("DD.MM.YY")) {
+      activeDay = "date-number active";
+    } else {
+      activeDay = "date-number";
+    }
+
     currentDay++;
     return (
       <div key={Math.random()} className="date">
-        <span className="date-number">{startOfWeek.format("ddd")}</span>
-        <div className="week-day">{startOfWeek.format("DD")}</div>
+        <div className="week-day">{startOfWeek.format("ddd")}</div>
+        <span className={activeDay}>{startOfWeek.format("DD")}</span>
       </div>
     );
   });
