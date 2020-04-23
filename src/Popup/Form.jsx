@@ -1,5 +1,5 @@
 import React from "react";
-import { createEvent } from "../Gateways/Gateways";
+import { createEvent } from "../gate-ways/gateWays";
 class Form extends React.Component {
   constructor(props) {
     super(props);

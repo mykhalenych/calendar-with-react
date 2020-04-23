@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 
+
 const Week = ({ day }) => {
   let currentDay = day;
 
@@ -16,7 +17,7 @@ const Week = ({ day }) => {
 
     currentDay++;
     return (
-      <div key={Math.random()} className="date">
+      <div key={currentDay} className="date">
         <div className="week-day">{startOfWeek.format("ddd")}</div>
         <span className={activeDay}>{startOfWeek.format("DD")}</span>
       </div>

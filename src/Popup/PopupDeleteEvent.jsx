@@ -1,18 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { deleteEvent } from "../Gateways/Gateways";
-const PopupDelete = ({closeDeletePopup, id}) => {
-   console.log(id);
-   const handleSubmit = (event) => {
+import { deleteEvent } from "../gate-ways/gateWays";
+
+const PopupDelete = ({ closeDeletePopup, id }) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
   };
+  const handleDelete = () => {
+    deleteEvent(id).then(closeDeletePopup)
+  }
   return (
     <div className="popupDelete">
       <form className="popupDelete-form" onClick={handleSubmit}>
         <button
           className="delete-btn"
           id="delete"
-          onClick={() => deleteEvent(id).then(closeDeletePopup)}
+          onClick={handleDelete}
         >
           <i className="material-icons">delete</i>
         </button>
@@ -29,6 +32,6 @@ const PopupDelete = ({closeDeletePopup, id}) => {
 };
 PopupDelete.propTypes = {
   closeDeletePopup: PropTypes.func,
-  id: PropTypes.number
+  id: PropTypes.number,
 };
 export default PopupDelete;

@@ -1,26 +1,20 @@
 import React from "react";
 import moment from "moment";
+import {arrFill} from "../gate-ways/func";
 
-const Field = ({ idHour, events, showPopup, showEventData }) => {
-  let arr = (from, to) => {
-    const result = [];
+const Event = ({ idHour, events, showEventData }) => {
 
-    for (let i = from; i <= to; i++) {
-      result.push(i);
-    }
-    return result;
-  };
+
   let idForHour = idHour;
-  return arr(0, 23).map((item) => {
+  return arrFill(0, 23).map((item) => {
     const hour = `0${item}`.slice(-2);
     const id = `${idForHour}T${hour}`;
     let eventFound = events.find((event) => {
       return event.dataStart.slice(0, -3) === id;
     });
 
-    let event;
-
     if (eventFound) {
+     
       let startHour = moment(eventFound.dataStart, "YYYY-MM-DD hh:mm").format(
         "HH"
       );
@@ -39,7 +33,7 @@ const Field = ({ idHour, events, showPopup, showEventData }) => {
         return (bgColor = `#2979ff`);
       }
 
-      event = (
+      return (
         <div
           className="event"
           style={{
@@ -57,15 +51,7 @@ const Field = ({ idHour, events, showPopup, showEventData }) => {
         </div>
       );
     }
-    return (
-      <div
-        key={Math.random()}
-        className="multicolumns__field"
-        onClick={showPopup}
-      >
-        {event}
-      </div>
-    );
   });
 };
-export default Field;
+
+export default Event;

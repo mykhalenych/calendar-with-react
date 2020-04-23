@@ -19,13 +19,11 @@ const Multicolumns = ({ day, events, showPopup, handleDeleteTask, closePopup, sh
         const redline =
           idHour === moment().format("YYYY-MM-DD") ? <Redline /> : null;
         return (
-          <div key={Math.random()} className="multicolumns__line">
+          <div key={idHour} className="multicolumns__line">
             <Field
               idHour={idHour}
               events={events}
               showPopup={showPopup}
-              handleDeleteTask={handleDeleteTask}
-              closePopup={closePopup}
               showEventData={showEventData}
             />
             {redline}

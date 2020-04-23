@@ -1,10 +1,11 @@
 import React from "react";
 import Header from "./Header/Header";
 import Main from "./Main/Main";
-import Popup from "./Popup/Popup";
-import PopupDelete from "./Popup/PopupDelete";
+import PopupCreateEvent from "./Popup/PopupCreateEvent";
+import PopupDeleteEvent from "./Popup/PopupDeleteEvent";
 import moment from "moment";
-import { fetchEventsList, deleteEvent } from "./Gateways/Gateways";
+import { fetchEventsList, deleteEvent } from "./gate-ways/gateWays";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -61,25 +62,21 @@ class App extends React.Component {
 
   closePopup = () => {
     this.setState({
-      show: !this.state.show
-      
+      show: !this.state.show,
     });
   };
   closeDeletePopup = () => {
     this.setState({
-      willDelete: !this.state.willDelete
-      
+      willDelete: !this.state.willDelete,
     });
   };
 
   showEventData = (event, { id }) => {
-
     event.stopPropagation();
     this.setState({
       willDelete: true,
-      id:  id
+      id: id,
     });
-
   };
   handleCuurentDay = () => {
     this.setState({
@@ -122,9 +119,9 @@ class App extends React.Component {
           closePopup={this.closePopup}
           showEventData={this.showEventData}
         />
-        {this.state.show && <Popup closePopup={this.closePopup} />}
+        {this.state.show && <PopupCreateEvent closePopup={this.closePopup} />}
         {this.state.willDelete && (
-          <PopupDelete
+          <PopupDeleteEvent
             closeDeletePopup={this.closeDeletePopup}
             id={this.state.id}
           />
